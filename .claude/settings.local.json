@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(source:*)",
+      "Bash(python:*)",
+      "Bash(vercel --prod)",
+      "Bash(npm install:*)",
+      "Bash(railway login:*)",
+      "Bash(railway status:*)",
+      "Bash(railway up:*)",
+      "Bash(railway logs:*)",
+      "Bash(railway domain)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

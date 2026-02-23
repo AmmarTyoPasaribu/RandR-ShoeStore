@@ -1,0 +1,101 @@
+/* General Styling */
+.sale-page {
+  text-align: center;
+  padding: 50px;
+  background: #121212;
+  color: white;
+}
+
+.sale-title {
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+/* Styling for Product Grid */
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-card {
+  background: #ffffff10;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+  position: relative;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.product-details {
+  margin-top: 20px;
+}
+
+.product-category {
+  font-size: 14px;
+  color: #dddddd;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #bbbbbb;
+}
+
+/* Wishlist & Cart Buttons */
+.wishlist-btn,
+.cart-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.wishlist-btn {
+  top: 20px;
+  right: 20px;
+}
+
+.cart-btn {
+  bottom: 20px;
+  right: 20px;
+}
+
+.wishlist-btn:hover,
+.cart-btn:hover {
+  color: #f39c12;
+}

@@ -1,0 +1,134 @@
+.shoe-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:  #111827;
+  }
+  
+  .shoe-detail-content {
+    display: flex;
+    background-color: #ffffff10;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .shoe-image-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .shoe-image {
+    width: 400px;
+    height: auto;
+  }
+  
+  .navigation-arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  
+  .arrow-left,
+  .arrow-right {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    pointer-events: all;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .shoe-info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 40px;
+  }
+  
+  .shoe-category {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .shoe-name {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .shoe-color {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .shoe-price {
+    font-size: 28px;
+    color: #000;
+    margin: 20px 0;
+  }
+  
+  .size-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .size-selection label {
+    margin-right: 10px;
+  }
+  
+  .size-dropdown, 
+  .shoe-size-dropdown {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .stock-status {
+    font-size: 14px;
+    color: green;
+    margin-bottom: 20px;
+  }
+  
+  .add-to-cart-button {
+    padding: 12px;
+    background-color: #000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #444;
+  }
+  
+  .buy-button {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: forestgreen;
+    color: #ddd;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .buy-button:hover {
+    background-color: darkgreen;
+  }

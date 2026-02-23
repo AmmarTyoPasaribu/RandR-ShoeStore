@@ -1,0 +1,26 @@
+# Gunakan image Node.js sebagai base untuk React frontend
+FROM node:16-alpine
+
+# Set working directory di dalam container
+WORKDIR /app
+
+# Salin file package.json dan package-lock.json
+COPY package*.json ./
+
+# Install dependencies frontend (React)
+RUN npm install
+
+# Salin seluruh source code frontend
+COPY . .
+
+# Build aplikasi React
+RUN npm run build
+
+# Install serve untuk menyajikan aplikasi build React
+RUN npm install -g serve
+
+# Expose port 3000 yang digunakan React
+EXPOSE 3000
+
+# Menjalankan aplikasi frontend
+CMD ["serve", "-s", "build"]

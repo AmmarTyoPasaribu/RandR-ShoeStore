@@ -1,0 +1,15 @@
+Flask
+Flask-Cors
+Flask-JWT-Extended
+supabase
+pytz
+pandas
+joblib
+numpy
+scikit-learn
+matplotlib
+seaborn
+imblearn
+python-dotenv
+gunicorn
+Werkzeug

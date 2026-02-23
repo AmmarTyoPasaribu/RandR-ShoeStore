@@ -1,0 +1,208 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle at center, #121212, #333);
+    color: white;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #00000070;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .menu-item {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  
+  .menu-item:hover, .menu-item.active {
+    background: #ffffff10;
+    border-radius: 8px;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .signin, .signup {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  .signin:hover, .signup:hover {
+    background: white;
+    color: black;
+  }
+  
+  .hero {
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .best-product-title {
+    display: flex;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-container {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Posisi search bar di tengah */
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  
+  .search-bar {
+    display: flex;
+    padding: 10px;
+    width: 400px; /* Sesuaikan panjang search bar */
+    max-width: 90%; /* Responsif pada layar kecil */
+    border-radius: 8px;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .product-card {
+    background: #ffffff10;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    width: 250px;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .product-details {
+    margin-bottom: 10px;
+  }
+  
+  .product-category {
+    font-size: 14px;
+    color: #dddddd;
+  }
+  
+  .product-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .product-price {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  
+  .wishlist-btn, .cart-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .cart-btn {
+    bottom: 20px;
+    top: unset;
+    right: 20px;
+    font-size: 20px;
+  }
+  
+  .wishlist-btn:hover, .cart-btn:hover {
+    color: #f39c12;
+  }
+  
+  .recommendation-box {
+    position: absolute;
+    top: 50px; /* Posisi tepat di bawah search bar */
+    left: 50%; /* Posisi horizontal di tengah */
+    transform: translateX(-50%); /* Menggeser kotak agar benar-benar di tengah */
+    background-color: white;
+    width: 400px; /* Samakan dengan panjang search bar */
+    max-width: 90%;
+    border-radius: 8px;
+    padding: 10px;
+    color: black;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recommendation-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .recommendation-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recommendation-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+  }
+  
+  .recommendation-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .recommendation-item a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .recommendation-item a:hover {
+    text-decoration: underline;
+  }

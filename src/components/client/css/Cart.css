@@ -1,0 +1,58 @@
+/* Pagination Styles */
+.pagination button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4b5563;
+  color: #e5e7eb;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #3b4552;
+}
+
+.pagination button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.pagination button.bg-blue-500 {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.pagination button.bg-blue-500:hover {
+  background-color: #2563eb;
+}
+
+.pagination button.bg-gray-700 {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+.pagination button.bg-gray-700:hover {
+  background-color: #1f2937;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+}
