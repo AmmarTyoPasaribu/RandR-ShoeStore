@@ -31,16 +31,13 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False  # Token never expires
 # Inisialisasi JWTManager
 jwt = JWTManager(app)
 
-# CORS Configuration
-if os.environ.get('RAILWAY_ENVIRONMENT'):
-    allowed_origins = [
-        "https://rnr-webstore-6g88xzlnr-mahendra-kirana-mbs-projects.vercel.app",
-        "https://rnr-webstore-3pybq4g06-mahendra-kirana-mbs-projects.vercel.app",
-        "https://rnr-webstore-bofx44evs-mahendra-kirana-mbs-projects.vercel.app",
-        "*.vercel.app"
-    ]
-else:
-    allowed_origins = ["http://localhost:3000"]
+# CORS Configuration — allow Render, Vercel, and localhost
+allowed_origins = [
+    "http://localhost:3000",
+    "https://randr-shoestore.onrender.com",
+    "https://*.onrender.com",
+    "https://*.vercel.app",
+]
 
 CORS(app, resources={
     r"/api/*": {

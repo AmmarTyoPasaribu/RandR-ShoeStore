@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire application folder into the container
 COPY . /app
 
-# Expose the port used by Flask (5000)
+# Expose the port (Render sets $PORT dynamically)
 EXPOSE 5000
 
-# Run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Run with gunicorn using dynamic PORT
+CMD gunicorn app:app --bind 0.0.0.0:${PORT:-5000}
