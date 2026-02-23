@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 function AdminWishlists({ accessToken }) {
   const [wishlists, setWishlists] = useState([]);
@@ -15,14 +16,14 @@ function AdminWishlists({ accessToken }) {
   const authHeaders = { headers: { Authorization: `Bearer ${accessToken}` } };
 
   const fetchWishlists = () => {
-    axios.get('http://localhost:5000/api/wishlist', authHeaders)
+    axios.get(`${API_URL}/wishlist`, authHeaders)
       .then(response => setWishlists(response.data))
       .catch(error => console.error('Error fetching wishlists:', error));
   };
 
   const handleCreateWishlist = () => {
     if (!newWishlist.id_user || !newWishlist.shoe_detail_id) return;
-    axios.post('http://localhost:5000/api/wishlist', newWishlist, authHeaders)
+    axios.post(`${API_URL}/wishlist`, newWishlist, authHeaders)
       .then(() => {
         fetchWishlists();
         setNewWishlist({ id_user: '', shoe_detail_id: '' });
@@ -38,7 +39,7 @@ function AdminWishlists({ accessToken }) {
   const handleEditWishlist = (wishlist) => { setEditWishlist({ ...wishlist }); };
 
   const handleUpdateWishlist = () => {
-    axios.put(`http://localhost:5000/api/wishlist/${editWishlist.id_wishlist}`, editWishlist, authHeaders)
+    axios.put(`${API_URL}/wishlist/${editWishlist.id_wishlist}`, editWishlist, authHeaders)
       .then(() => {
         fetchWishlists();
         setEditWishlist(null);
@@ -57,7 +58,7 @@ function AdminWishlists({ accessToken }) {
       background: '#1c1917', color: '#fff',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/api/wishlist/${wishlistId}`, authHeaders)
+        axios.delete(`${API_URL}/wishlist/${wishlistId}`, authHeaders)
           .then(() => {
             fetchWishlists();
             Swal.fire({ icon: 'success', title: 'Deleted!', timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });

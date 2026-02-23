@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_URL from '../../config/api';
 
 function AdminPayments({ accessToken }) {
   const [payments, setPayments] = useState([]);
@@ -14,7 +15,7 @@ function AdminPayments({ accessToken }) {
 
   const fetchPayments = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/payments", authHeaders);
+      const response = await axios.get(`${API_URL}/payments`, authHeaders);
       setPayments(response.data);
     } catch (error) {
       console.error("Error fetching payments:", error);
@@ -25,7 +26,7 @@ function AdminPayments({ accessToken }) {
 
   const handleUpdatePayment = async () => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/payments/${editPayment.payment_id}`, editPayment, authHeaders);
+      const response = await axios.put(`${API_URL}/payments/${editPayment.payment_id}`, editPayment, authHeaders);
       fetchPayments();
       setEditPayment(null);
       Swal.fire({ icon: "success", title: "Updated!", text: response.data.message, background: '#1c1917', color: '#fff', confirmButtonColor: '#f59e0b' });
@@ -43,7 +44,7 @@ function AdminPayments({ accessToken }) {
     });
     if (result.isConfirmed) {
       try {
-        const response = await axios.delete(`http://localhost:5000/api/payments/${paymentId}`, authHeaders);
+        const response = await axios.delete(`${API_URL}/payments/${paymentId}`, authHeaders);
         fetchPayments();
         Swal.fire({ icon: "success", title: "Deleted!", text: response.data.message, timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });
       } catch (error) {

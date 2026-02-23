@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_URL from '../../config/api';
 
 function AdminUser({ accessToken }) {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ function AdminUser({ accessToken }) {
 
   const fetchUsers = useCallback(() => {
     axios
-      .get("http://localhost:5000/api/users", authHeaders)
+      .get(`${API_URL}/users`, authHeaders)
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -23,7 +24,7 @@ function AdminUser({ accessToken }) {
 
   const handleUpdateUser = () => {
     axios
-      .put(`http://localhost:5000/api/users/profile/${editUser.user_id}`, editUser, authHeaders)
+      .put(`${API_URL}/users/profile/${editUser.user_id}`, editUser, authHeaders)
       .then(() => {
         fetchUsers();
         setEditUser(null);
@@ -42,7 +43,7 @@ function AdminUser({ accessToken }) {
       background: '#1c1917', color: '#fff',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/api/users/${userId}`, authHeaders)
+        axios.delete(`${API_URL}/users/${userId}`, authHeaders)
           .then(() => {
             fetchUsers();
             Swal.fire({ icon: "success", title: "Deleted!", timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });

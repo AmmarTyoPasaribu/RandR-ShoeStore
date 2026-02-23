@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from '../../config/api';
 
 function ShoeDetail() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function ShoeDetail() {
     const fetchShoe = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/shoes/${id}`,
+          `${API_URL}/shoes/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setShoe(response.data);
@@ -35,7 +36,7 @@ function ShoeDetail() {
         shoe_detail_id: shoe.shoe_detail_id,
         quantity: quantity,
       };
-      const response = await axios.post("http://localhost:5000/api/cart", data, {
+      const response = await axios.post(`${API_URL}/cart`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 201) {

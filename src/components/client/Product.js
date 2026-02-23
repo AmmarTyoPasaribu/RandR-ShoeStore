@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 function Product({ userId, accessToken }) {
   const [shoes, setShoes] = useState([]);
@@ -29,7 +30,7 @@ function Product({ userId, accessToken }) {
     const fetchWishlist = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/wishlist/${parseInt(userId)}`,
+          `${API_URL}/wishlist/${parseInt(userId)}`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
         if (Array.isArray(response.data)) {
@@ -68,7 +69,7 @@ function Product({ userId, accessToken }) {
     console.log("Token preview:", accessToken?.substring(0, 20) + "...");
     
     try {
-      const response = await axios.get("http://localhost:5000/api/shoes", {
+      const response = await axios.get(`${API_URL}/shoes`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -160,7 +161,7 @@ function Product({ userId, accessToken }) {
   const handleShoeClick = async (shoeId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/shoes/${shoeId}`,
+        `${API_URL}/shoes/${shoeId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -175,7 +176,7 @@ function Product({ userId, accessToken }) {
       // Record 'view' interaction
       try {
         await axios.post(
-          'http://localhost:5000/api/user_interactions',
+          `${API_URL}/user_interactions`,
           {
             id_user: parseInt(userId),
             shoe_detail_id: shoeId,
@@ -222,7 +223,7 @@ function Product({ userId, accessToken }) {
       if (wishlistId) {
         try {
           await axios.delete(
-            `http://localhost:5000/api/wishlist/${wishlistId}`,
+            `${API_URL}/wishlist/${wishlistId}`,
             { headers: { Authorization: `Bearer ${accessToken}` } }
           );
           setFavoriteShoes(prev => {
@@ -244,7 +245,7 @@ function Product({ userId, accessToken }) {
       // Add to wishlist
       try {
         await axios.post(
-          'http://localhost:5000/api/wishlist',
+          `${API_URL}/wishlist`,
           {
             id_user: parseInt(userId),
             shoe_detail_id: shoeId
@@ -259,7 +260,7 @@ function Product({ userId, accessToken }) {
         // Refetch to get the id_wishlist
         try {
           const wlResponse = await axios.get(
-            `http://localhost:5000/api/wishlist/${parseInt(userId)}`,
+            `${API_URL}/wishlist/${parseInt(userId)}`,
             { headers: { Authorization: `Bearer ${accessToken}` } }
           );
           if (Array.isArray(wlResponse.data)) {
@@ -304,7 +305,7 @@ function Product({ userId, accessToken }) {
       });
 
       const response = await axios.post(
-        "http://localhost:5000/api/cart",
+        `${API_URL}/cart`,
         {
           shoe_detail_id: shoeId,
           id_user: parseInt(userId),

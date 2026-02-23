@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_URL from '../../config/api';
 
 function AdminRecommendations({ accessToken }) {
   const [recommendations, setRecommendations] = useState([]);
@@ -10,7 +11,7 @@ function AdminRecommendations({ accessToken }) {
 
   const fetchRecommendations = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/shoe_recommendations", {
+      const response = await axios.get(`${API_URL}/shoe_recommendations`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       setRecommendations(response.data || []);
@@ -30,7 +31,7 @@ function AdminRecommendations({ accessToken }) {
     setTraining(true);
     setTrainingResult(null);
     try {
-      const response = await axios.post("http://localhost:5000/api/train_recommendation", {}, {
+      const response = await axios.post(`${API_URL}/train_recommendation`, {}, {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       setTrainingResult({ success: true, message: response.data.message || "Training completed!", status: response.data.status });
@@ -59,7 +60,7 @@ function AdminRecommendations({ accessToken }) {
     });
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/api/shoe_recommendations/${id}`, {
+        await axios.delete(`${API_URL}/shoe_recommendations/${id}`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
         setRecommendations((prev) => prev.filter((rec) => rec.id_shoe_recomendation !== id));

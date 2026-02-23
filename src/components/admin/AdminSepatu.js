@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 function AdminSepatu({ accessToken }) {
   const [categories, setCategories] = useState([]);
@@ -14,7 +15,7 @@ function AdminSepatu({ accessToken }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchCategories = () => {
-    axios.get('http://localhost:5000/api/categories', authHeaders)
+    axios.get(`${API_URL}/categories`, authHeaders)
       .then(response => {
         setCategories(response.data);
       })
@@ -25,7 +26,7 @@ function AdminSepatu({ accessToken }) {
 
   const handleCreateCategory = () => {
     if (!newCategory.trim()) return;
-    axios.post('http://localhost:5000/api/categories', { category_name: newCategory }, authHeaders)
+    axios.post(`${API_URL}/categories`, { category_name: newCategory }, authHeaders)
       .then(() => {
         fetchCategories();
         setNewCategory('');
@@ -42,7 +43,7 @@ function AdminSepatu({ accessToken }) {
   };
 
   const handleUpdateCategory = () => {
-    axios.put(`http://localhost:5000/api/categories/${editCategory.category_id}`, { category_name: editCategory.category_name }, authHeaders)
+    axios.put(`${API_URL}/categories/${editCategory.category_id}`, { category_name: editCategory.category_name }, authHeaders)
       .then(() => {
         fetchCategories();
         setEditCategory(null);
@@ -67,7 +68,7 @@ function AdminSepatu({ accessToken }) {
       color: '#fff',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/api/categories/${categoryId}`, authHeaders)
+        axios.delete(`${API_URL}/categories/${categoryId}`, authHeaders)
           .then(() => {
             fetchCategories();
             Swal.fire({ icon: 'success', title: 'Deleted!', timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });

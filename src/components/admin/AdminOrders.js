@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_URL from '../../config/api';
 
 function AdminOrders({ accessToken }) {
   const [orders, setOrders] = useState([]);
@@ -13,7 +14,7 @@ function AdminOrders({ accessToken }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchOrders = () => {
-    axios.get("http://localhost:5000/api/orders", authHeaders)
+    axios.get(`${API_URL}/orders`, authHeaders)
       .then((response) => setOrders(response.data))
       .catch((error) => console.error("Error fetching orders:", error));
   };
@@ -21,7 +22,7 @@ function AdminOrders({ accessToken }) {
   const handleEditOrder = (order) => { setEditOrder({ ...order }); };
 
   const handleUpdateOrder = () => {
-    axios.put(`http://localhost:5000/api/orders/${editOrder.order_id}`, {
+    axios.put(`${API_URL}/orders/${editOrder.order_id}`, {
       order_status: editOrder.order_status,
       order_date: editOrder.order_date,
     }, authHeaders)
@@ -43,7 +44,7 @@ function AdminOrders({ accessToken }) {
       background: '#1c1917', color: '#fff',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/api/orders/${orderId}`, authHeaders)
+        axios.delete(`${API_URL}/orders/${orderId}`, authHeaders)
           .then(() => {
             fetchOrders();
             Swal.fire({ icon: "success", title: "Deleted!", timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });

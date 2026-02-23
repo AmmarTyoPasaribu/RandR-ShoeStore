@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import API_URL from '../../config/api';
 
 function OrderPage({ userId, accessToken }) {
   const [orders, setOrders] = useState([]);
@@ -13,7 +14,7 @@ function OrderPage({ userId, accessToken }) {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:5000/api/orders/user/${userId}`,
+        `${API_URL}/orders/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

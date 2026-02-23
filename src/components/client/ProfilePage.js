@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_URL from '../../config/api';
 
 const ProfilePage = ({ userId, accessToken, username, role }) => {
   const [editMode, setEditMode] = useState(false);
@@ -27,7 +28,7 @@ const ProfilePage = ({ userId, accessToken, username, role }) => {
       if (userId && accessToken) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/users/${userId}`,
+            `${API_URL}/users/${userId}`,
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -82,7 +83,7 @@ const ProfilePage = ({ userId, accessToken, username, role }) => {
     const fetchUserStats = async () => {
       try {
         const ordersResponse = await axios.get(
-          `http://localhost:5000/api/orders/user/${userId}`,
+          `${API_URL}/orders/user/${userId}`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
         const orders = ordersResponse.data || [];
@@ -90,7 +91,7 @@ const ProfilePage = ({ userId, accessToken, username, role }) => {
 
         let cartCount = 0;
         try {
-          const cartResponse = await axios.get(`http://localhost:5000/api/cart/${userId}`, { headers: { Authorization: `Bearer ${accessToken}` } });
+          const cartResponse = await axios.get(`${API_URL}/cart/${userId}`, { headers: { Authorization: `Bearer ${accessToken}` } });
           cartCount = Array.isArray(cartResponse.data) ? cartResponse.data.length : 0;
         } catch (cartError) {
           if (cartError.response?.status !== 404) console.error("Error fetching cart:", cartError);
@@ -98,7 +99,7 @@ const ProfilePage = ({ userId, accessToken, username, role }) => {
 
         let wishlistCount = 0;
         try {
-          const wishlistResponse = await axios.get(`http://localhost:5000/api/wishlist/${userId}`, { headers: { Authorization: `Bearer ${accessToken}` } });
+          const wishlistResponse = await axios.get(`${API_URL}/wishlist/${userId}`, { headers: { Authorization: `Bearer ${accessToken}` } });
           wishlistCount = Array.isArray(wishlistResponse.data) ? wishlistResponse.data.length : 0;
         } catch (wishlistError) {
           if (wishlistError.response?.status !== 404) console.error("Error fetching wishlist:", wishlistError);
@@ -123,7 +124,7 @@ const ProfilePage = ({ userId, accessToken, username, role }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/users/profile/${userId}`,
+        `${API_URL}/users/profile/${userId}`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );

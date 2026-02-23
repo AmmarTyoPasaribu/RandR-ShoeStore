@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../../config/api';
 
 function AdminSepatuDetail() {
   const navigate = useNavigate();
@@ -21,14 +22,14 @@ function AdminSepatuDetail() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchShoes = () => {
-    axios.get('http://localhost:5000/api/shoes')
+    axios.get(`${API_URL}/shoes`)
       .then(response => setShoes(response.data))
       .catch(error => console.error('Error fetching shoes:', error));
   };
 
   const handleCreateShoe = () => {
     if (!newShoe.shoe_name || !newShoe.shoe_price) return;
-    axios.post('http://localhost:5000/api/shoes', newShoe)
+    axios.post(`${API_URL}/shoes`, newShoe)
       .then(() => {
         fetchShoes();
         setNewShoe({ category_id: '', shoe_name: '', shoe_price: '', shoe_size: '', stock: '' });
@@ -44,7 +45,7 @@ function AdminSepatuDetail() {
   const handleEditShoe = (shoe) => { setEditShoe({ ...shoe }); };
 
   const handleUpdateShoe = () => {
-    axios.put(`http://localhost:5000/api/shoes/${editShoe.shoe_detail_id}`, editShoe)
+    axios.put(`${API_URL}/shoes/${editShoe.shoe_detail_id}`, editShoe)
       .then(() => {
         fetchShoes();
         setEditShoe(null);
@@ -63,7 +64,7 @@ function AdminSepatuDetail() {
       background: '#1c1917', color: '#fff',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/api/shoes/${shoeId}`)
+        axios.delete(`${API_URL}/shoes/${shoeId}`)
           .then(() => {
             fetchShoes();
             Swal.fire({ icon: 'success', title: 'Deleted!', timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });

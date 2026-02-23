@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 function AdminInteractions({ accessToken }) {
   const [interactions, setInteractions] = useState([]);
@@ -15,7 +16,7 @@ function AdminInteractions({ accessToken }) {
   const authHeaders = { headers: { Authorization: `Bearer ${accessToken}` } };
 
   const fetchInteractions = () => {
-    axios.get('http://localhost:5000/api/user_interactions', authHeaders)
+    axios.get(`${API_URL}/user_interactions`, authHeaders)
       .then(response => setInteractions(response.data))
       .catch(error => console.error('Error fetching interactions:', error));
   };
@@ -25,7 +26,7 @@ function AdminInteractions({ accessToken }) {
       Swal.fire({ icon: 'error', title: 'Error!', text: 'All fields are required.', background: '#1c1917', color: '#fff', confirmButtonColor: '#ef4444' });
       return;
     }
-    axios.post('http://localhost:5000/api/user_interactions', newInteraction, authHeaders)
+    axios.post(`${API_URL}/user_interactions`, newInteraction, authHeaders)
       .then(() => {
         fetchInteractions();
         setNewInteraction({ id_user: '', shoe_detail_id: '', interaction_type: '' });
@@ -45,7 +46,7 @@ function AdminInteractions({ accessToken }) {
       Swal.fire({ icon: 'error', title: 'Error!', text: 'All fields are required.', background: '#1c1917', color: '#fff', confirmButtonColor: '#ef4444' });
       return;
     }
-    axios.put(`http://localhost:5000/api/user_interactions/${editInteraction.interaction_id}`, editInteraction, authHeaders)
+    axios.put(`${API_URL}/user_interactions/${editInteraction.interaction_id}`, editInteraction, authHeaders)
       .then(() => {
         fetchInteractions();
         setEditInteraction(null);
@@ -64,7 +65,7 @@ function AdminInteractions({ accessToken }) {
       background: '#1c1917', color: '#fff',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/api/user_interactions/${interactionId}`, authHeaders)
+        axios.delete(`${API_URL}/user_interactions/${interactionId}`, authHeaders)
           .then(() => {
             fetchInteractions();
             Swal.fire({ icon: 'success', title: 'Deleted!', timer: 1500, showConfirmButton: false, background: '#1c1917', color: '#fff' });

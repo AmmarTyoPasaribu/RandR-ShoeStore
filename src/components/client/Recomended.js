@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 function Recomended({ userId, accessToken }) {
   const [products, setProducts] = useState([]);
@@ -25,7 +26,7 @@ function Recomended({ userId, accessToken }) {
     const fetchRecommendations = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/shoe_recommendations/${userId}`,
+          `${API_URL}/shoe_recommendations/${userId}`,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );
 
@@ -127,7 +128,7 @@ function Recomended({ userId, accessToken }) {
       });
 
       const response = await axios.post(
-        "http://localhost:5000/api/cart",
+        `${API_URL}/cart`,
         {
           shoe_detail_id: shoeId,
           id_user: parseInt(userId),
